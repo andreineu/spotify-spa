@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import "./App.css";
+import Content from "./components/Content";
+import PlayerBar from "./components/PlayerBar/PlayerBar";
+import Sidebar from "./components/Sidebar";
 
 function App() {
+  const [token, setToken] = useState("");
+  useEffect(() => {
+    const hash = window.location.hash;
+    let token = window.localStorage.getItem("token");
+    if (!token && hash) {
+      // token = hash.
+    }
+  }, []);
+  const CLIENT_ID = "";
+  const REDIRECT_URI = "http://localhost:3000";
+  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+  const RESPONSE_TYPE = "token";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* <Routes> */}
+      <div className="text-gray-300 flex bg-black ">
+        <Sidebar />
+        <Content />
+        <PlayerBar />
+      </div>
+      {/* </Routes> */}
+    </>
   );
 }
 
